@@ -1,6 +1,7 @@
 package com.sativachain.api.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,5 +19,20 @@ public class TodoServiceImpl implements ITodoService {
     @Override
     public List<Todo> findByUsername(String username) {
         return todo.findByUsername(username);
+    }
+
+    @Override
+    public Optional<Todo> findById(long id) {
+        return todo.findById(id);
+    }
+
+    @Override
+    public void deleteById(long id) {
+        todo.deleteById(id);
+    }
+
+    @Override
+    public Todo save(Todo t) {
+        return todo.save(t);
     }
 }
