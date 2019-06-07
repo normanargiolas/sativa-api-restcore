@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,8 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import com.sativachain.api.model.entity.Todo;
 import com.sativachain.api.service.ITodoService;
 
-@CrossOrigin(origins = "http://localhost:4200")
+//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 public class TodoController {
 
@@ -27,16 +29,19 @@ public class TodoController {
     private ITodoService todoService;
 
     @GetMapping("/api/users/{username}/todos")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public List<Todo> getAllTodos(@PathVariable String username) {
         return todoService.findByUsername(username);
     }
 
     @GetMapping("/api/users/{username}/todos/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public Todo getTodo(@PathVariable String username, @PathVariable long id) {
         return todoService.findById(id).get();
     }
 
     @DeleteMapping("/api/users/{username}/todos/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Void> deleteTodo(@PathVariable String username,
                                            @PathVariable long id) {
         todoService.deleteById(id);
@@ -44,6 +49,7 @@ public class TodoController {
     }
 
     @PutMapping("/api/users/{username}/todos/{id}")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Todo> updateTodo(@PathVariable String username,
                                            @PathVariable long id,
                                            @RequestBody Todo todo) {
@@ -53,6 +59,7 @@ public class TodoController {
     }
 
     @PostMapping("/api/users/{username}/todos")
+    @PreAuthorize("hasRole('USER') or hasRole('ADMIN')")
     public ResponseEntity<Void> createTodo(@PathVariable String username,
                                            @RequestBody Todo todo) {
         todo.setUsername(username);
