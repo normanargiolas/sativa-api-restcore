@@ -1,28 +1,28 @@
-package com.sativachain.api.service;
-
-import com.sativachain.api.dto.jwt.UserPrinciple;
-import com.sativachain.api.model.entity.User;
-import com.sativachain.api.model.repository.IUserRepository;
+package com.sativachain.api.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.sativachain.api.dto.jwt.UserPrinciple;
+import com.sativachain.api.model.dao.IUserDAO;
+import com.sativachain.api.model.entity.User;
+import com.sativachain.api.service.IUserDetailsService;
+
 @Service
-public class UserDetailsServiceImpl implements UserDetailsService {
+public class UserDetailsServiceImpl implements IUserDetailsService {
 
     @Autowired
-    IUserRepository IUserRepository;
+    IUserDAO IUserDAO;
 
     @Override
     @Transactional
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
     	
-        User user = IUserRepository.findByUsername(username)
+        User user = IUserDAO.findByUsername(username)
                 	.orElseThrow(() -> 
                         new UsernameNotFoundException("User Not Found with -> username or email : " + username)
         );

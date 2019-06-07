@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 import com.sativachain.api.config.jwt.JwtAuthEntryPoint;
 import com.sativachain.api.config.jwt.JwtAuthTokenFilter;
-import com.sativachain.api.service.UserDetailsServiceImpl;
+import com.sativachain.api.service.IUserDetailsService;
 
 @Configuration
 @EnableWebSecurity
@@ -25,7 +25,7 @@ import com.sativachain.api.service.UserDetailsServiceImpl;
 )
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
-    UserDetailsServiceImpl userDetailsService;
+    IUserDetailsService userDetailsService;
 
     @Autowired
     private JwtAuthEntryPoint unauthorizedHandler;
