@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
 
-import com.sativachain.api.service.UserPrinciple;
+import com.sativachain.api.dto.jwt.UserPrinciple;
 
 import java.util.Date;
 
