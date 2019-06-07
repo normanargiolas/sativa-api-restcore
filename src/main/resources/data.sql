@@ -8,4 +8,4 @@ insert into todo(id, username, description, target_date, is_done)
 values (10003, 'norman','Learn Microservices', now(), false);
 
 insert into todo(id, username, description, target_date, is_done)
-values (10004, 'norman','Learn Spring Security', now(), false);
+values (10004, 'luigi','Learn Spring Security', now(), false);
