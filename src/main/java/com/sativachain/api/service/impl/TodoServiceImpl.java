@@ -14,25 +14,25 @@ import com.sativachain.api.service.ITodoService;
 public class TodoServiceImpl implements ITodoService {
 
     @Autowired
-    private ITodoDAO todo;
+    private ITodoDAO todoDAO;
 
     @Override
     public List<Todo> findByUsername(String username) {
-        return todo.findByUsername(username);
+        return todoDAO.findByUsername(username);
     }
 
     @Override
     public Optional<Todo> findById(long id) {
-        return todo.findById(id);
+        return todoDAO.findById(id);
     }
 
     @Override
     public void deleteById(long id) {
-        todo.deleteById(id);
+        todoDAO.deleteById(id);
     }
 
     @Override
-    public Todo save(Todo t) {
-        return todo.save(t);
+    public Todo save(Todo todo) {
+        return todoDAO.save(todo);
     }
 }
