@@ -26,4 +26,20 @@ public class SeedServiceImpl implements ISeedService {
     public Optional<Seed> findByIdAndHarvestId(Long id, Long postId) {
         return seedDAO.findByIdAndHarvestId(id, postId);
     }
+
+    @Override
+    public Optional<Seed> findById(Long seedId) {
+        return seedDAO.findById(seedId);
+    }
+
+    @Override
+    public Object save(Seed seed) {
+        return seedDAO.save(seed);
+    }
+
+
+    @Override
+    public void delete(Object seed) {
+
+    }
 }
